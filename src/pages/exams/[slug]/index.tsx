@@ -7,7 +7,11 @@ import { useQuery } from "react-query";
 import { axiosPublic } from "@/lib";
 import { STUDENTS_URL } from "@/utils/urls";
 import { type ChangeEvent, useEffect, useMemo, useState } from "react";
-import type { TStudentsResponse } from "@/pages/students";
+import { TUser } from "@/components/cards/user-card";
+
+export type TStudentsResponse = {
+    data: TUser[];
+};
 
 export default function ExamsDetailsPage() {
     const { t } = useTranslate();

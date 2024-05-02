@@ -7,10 +7,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Flex, Form, Modal, Select, Typography } from "antd";
 import { PracticeState } from "@/redux/slices/practiceSlice";
 import { MultiSelect } from "./styles";
-import { TDepartmentsResponse } from "@/pages/departments";
 import { axiosPublic } from "@/lib";
 import { DEPARTMENTS_URL } from "@/utils/urls";
 import { useQuery } from "react-query";
+
+export type TDepartment = {
+    id: number;
+    name: string;
+};
+
+export type TDepartmentsResponse = {
+    data: TDepartment[];
+};
 
 export const PracticeModeFormScheme = z.object({
     category_ids: z.array(z.number()),
