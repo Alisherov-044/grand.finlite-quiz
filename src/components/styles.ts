@@ -1,6 +1,5 @@
 import * as antd from "antd";
 import styled from "styled-components";
-import tw from "tailwind-styled-components";
 import { twi } from "tw-to-css";
 
 export const FormItem = styled(antd.Form.Item)`
