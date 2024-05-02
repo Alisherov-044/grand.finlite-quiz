@@ -2,10 +2,6 @@ import { useSelector } from "@/hooks";
 import { getCurrentRole } from "@/utils";
 import { Navigate, useLocation } from "react-router-dom";
 
-const redirection: Record<string, string> = {
-    student: "/exams",
-};
-
 export default function RedirectToRolePage() {
     const location = useLocation();
     const { roles } = useSelector((state) => state.auth);
@@ -15,11 +11,5 @@ export default function RedirectToRolePage() {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return (
-        <Navigate
-            to={redirection[currentRole]}
-            state={{ from: location }}
-            replace
-        />
-    );
+    return <Navigate to="/exams" state={{ from: location }} replace />;
 }
