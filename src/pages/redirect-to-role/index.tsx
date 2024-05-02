@@ -11,5 +11,5 @@ export default function RedirectToRolePage() {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return <Navigate to="/exams" state={{ from: location }} replace />;
+    return <Navigate to="/exams" />;
 }
