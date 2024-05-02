@@ -1,67 +1,13 @@
-import gsap from "gsap";
 import { clsx } from "clsx";
 import { Flex } from "antd";
-import { useGSAP } from "@gsap/react";
 import { LayoutSkeleton } from "@/components";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 export type LoadingProps = {
     fallback?: ReactNode;
 };
 
 export function Loading({ fallback = <LayoutSkeleton /> }: LoadingProps) {
-    useEffect(() => {
-        useGSAP(() => {
-            gsap.defaults({
-                repeat: -1,
-            });
-
-            const tl = gsap.timeline();
-
-            tl.fromTo(
-                ".circle-animation-dot-1",
-                {
-                    scale: 0.5,
-                    background: "#070E8C",
-                    duration: 1,
-                },
-                {
-                    scale: 1.2,
-                    background: "#F7D340",
-                    duration: 0.8,
-                }
-            )
-                .fromTo(
-                    ".circle-animation-dot-2",
-                    {
-                        scale: 0.5,
-                        background: "#F7D340",
-                        duration: 1,
-                    },
-                    {
-                        scale: 1.2,
-                        background: "#070E8C",
-                        duration: 0.8,
-                    },
-                    "-=0.5"
-                )
-                .fromTo(
-                    ".circle-animation-dot-3",
-                    {
-                        scale: 0.5,
-                        background: "#070E8C",
-                        duration: 1,
-                    },
-                    {
-                        scale: 1.2,
-                        background: "#F7D340",
-                        duration: 0.8,
-                    },
-                    "-=1.2"
-                );
-        });
-    }, []);
-
     return (
         <Flex className="w-full h-full items-center justify-center">
             {fallback}
