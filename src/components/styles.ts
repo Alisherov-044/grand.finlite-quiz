@@ -86,6 +86,8 @@ export const Col = styled(antd.Col)`
     }
 `;
 
-export const Row = tw(antd.Row)`
-    !h-28
+export const Row = styled(antd.Row)`
+    ${twi`
+        !h-28
+    `}
 `;

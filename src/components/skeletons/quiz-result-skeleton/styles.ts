@@ -1,14 +1,21 @@
 import * as antd from "antd";
-import tw from "tailwind-styled-components";
+import styled from "styled-components";
+import { twi } from "tw-to-css";
 
-export const Title = tw(antd.Flex)`
-    w-full h-full items-center justify-center py-6 border-b
+export const Title = styled(antd.Flex)`
+    ${twi`
+        w-full h-full items-center justify-center py-6 border-b
+    `}
 `;
 
-export const HeaderCol = tw(antd.Col)`
-    border-r last-of-type:!border-none
+export const HeaderCol = styled(antd.Col)`
+    ${twi`
+        border-r last-of-type:!border-none
+    `}
 `;
 
-export const ContentCol = tw(HeaderCol)`
-    px-5 py-8
+export const ContentCol = styled(HeaderCol)`
+    ${twi`
+        px-5 py-8
+    `}
 `;
