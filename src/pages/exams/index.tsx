@@ -9,6 +9,8 @@ import { axiosPrivate } from "@/lib";
 import { EXAMS_URL, EXAM_QUESTIONS_URL } from "@/utils/urls";
 import type { TExam } from "@/components/cards/exam-card";
 import { setExamId, setQuestions } from "@/redux/slices/examSlice";
+import { AxiosError } from "axios";
+import { setAuth } from "@/redux/slices/authSlice";
 
 export type TExamsRequest = {
     title: string;
@@ -67,7 +69,11 @@ export default function ExamsPage() {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    const { data: exams, isLoading } = useQuery<TExamsResponse>("exams", {
+    const {
+        data: exams,
+        isLoading,
+        error,
+    } = useQuery<TExamsResponse, AxiosError<{ error: string }>>("exams", {
         queryFn: async () =>
             await axiosPrivate
                 .get(EXAMS_URL, {
@@ -78,6 +84,21 @@ export default function ExamsPage() {
                 .then((res) => res.data.data),
     });
     const dispatch = useDispatch();
+
+    if (error?.response?.data.error === "JWT_EXPIRED") {
+        dispatch(
+            setAuth({
+                id: -1,
+                roles: [],
+                isAuthenticated: false,
+                access_token: "",
+                refresh_token: "",
+                name: undefined,
+                phone_number: undefined,
+            })
+        );
+        return navigate("/login", { replace: true });
+    }
 
     async function getExamQuestions(id: number) {
         try {
